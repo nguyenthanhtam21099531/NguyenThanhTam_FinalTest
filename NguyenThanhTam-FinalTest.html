@@ -4,12 +4,65 @@
 	<title>Trang web bán dụng cụ thể thao</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Thêm các tập tin CSS Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<!-- Thêm các tập tin JavaScript Bootstrap -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script>
+        $(document).ready(function() {
+            var i = 2;
+            $("#btnDk").click(function() {
+                $("#myModal").modal();
+            })
+
+            function kiemtraMa() {
+                var mauKT = /[0-9]{9}$/;
+                if (mauKT.test($("#txtMa").val()) == true) {
+                    alert("Bạn đã nhập đúng");
+                    return true;
+                } else {
+                    alert("Vui lòng nhập lại");
+                    return false;
+                }
+            }
+            $("#txtMa").blur(kiemtraMa);
+
+            function kiemtraHT() {
+                var kt = /(^[A-Z]{1})([a-z]+)(\s[A-Z]{1}([a-z]*))*$/;
+                if ($("#txtTen").val() == "") {
+                    $("#tbTen").html("*Bắt buộc nhập!!");
+                    $("#tbTen").addClass("mauDo");
+                    return false;
+                } else
+                if (!kt.test($("#txtTen").val())) {
+                    $("#tbTen").html("*Chữ cái đầu của mỗi từ phải viết hoa !!");
+                    $("#tbTen").addClass("mauDo");
+                    return false;
+                } else {
+                    $("#tbTen").html("*");
+                    return true;        
+                }
+            };
+            $("#txtTen").blur(kiemtraHT);
+
+            function kiemtraDC() {
+                var mauKT = /([A-Za-z0-0]{5,})(\s[A-Za-z0-9]*)/; //Dia chi
+                if ($("#txtDC").val() == true) {
+                    $("#tbDC").html("*Bắt buộc nhập");
+                    $("#tbDC").addClass("mauDo");
+                    return false;
+                }
+                if (!mauKT.test($("#txtDC").val())) {
+                    $("#tbDc").html("*Chữ cái đầu của mỗi từ phải viết hoa !!");
+                    $("#tbDC").addClass("mauDo");
+                    return false;
+                }
+                $("#txtDC").html("*")
+                return true;
+            }
+            $("#txtDC").blur(kiemtraDC);
+        });
+    </script>
 </head>
 <body>
 	<header class="bg-light">
@@ -32,6 +85,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#">Liên hệ</a>
 				</li>
+                <li class="nav-item active">
+					<a class="nav-link" href="#" class="nav-link" data-toggle="modal" id="btnDK" data-target="#myModal">Đặt hàng</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -52,7 +108,7 @@
 					<a href="#"><img class="card-img-top" src="../img/productsAo-ta-the-luc-Suteng.jpg" alt=""></a>
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#">Dụng cụ 1</a>
+							<a href="#">Áo tạ</a>
 						</h4>
 						<h5>$24.99</h5>
 						<p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -67,7 +123,7 @@
 					<a href="#"><img class="card-img-top" src="../img/productsSu-dung-ghe-vot-ta.jpg" alt=""></a>
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#">Dụng cụ 2</a>
+							<a href="#">Ghế hỗ trợ tập Gym</a>
 						</h4>
 						<h5>$19.99</h5>
 						<p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -82,7 +138,7 @@
 					<a href="#"><img class="card-img-top" src="../img/productsta-tay-bowflex552.jpg" alt=""></a>
 					<div class="card-body">
 						<h4 class="card-title">
-							<a href="#">Dụng cụ 3</a>
+							<a href="#">Tạ</a>
 						</h4>
 						<h5>$14.99</h5>
 						<p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -103,7 +159,7 @@
                             <a href="#"><img class="card-img-top" src="../img/productsBong-da-Dong-Luc-UHV-207.jpg" alt=""></a>
                             <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Dụng cụ 1</a>
+                                <a href="#">Bóng trọng lực</a>
                             </h4>
                             <h5>$24.99</h5>
                             <p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -118,7 +174,7 @@
                         <a href="#"><img class  ="card-img-top" src="../img/productskhung-thanh-mini-f181.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Dụng cụ 2</a>
+                                <a href="#">Khung Gôn</a>
                             </h4>
                             <h5>$19.99</h5>
                             <p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -133,7 +189,7 @@
                         <a href="#"><img class="card-img-top" src="../img/productsmay-chay-bo-sakura-s33.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Dụng cụ 3</a>
+                                <a href="#">Máy chạy bộ</a>
                             </h4>
                             <h5>$14.99</h5>
                             <p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -154,7 +210,7 @@
                                 <a href="#"><img class="card-img-top" src="../img/Xa-nhay-cao-tap-luyen-T002.jpg" alt=""></a>
                                 <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Dụng cụ 1</a>
+                                    <a href="#">Dụng cụ nhảy xà</a>
                                 </h4>
                                 <h5>$24.99</h5>
                                 <p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -169,7 +225,7 @@
                             <a href="#"><img class  ="card-img-top" src="../img/productsvot-bong-ban-729-golden-max-1-star.jpg" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Dụng cụ 2</a>
+                                    <a href="#">Gậy bóng bàn</a>
                                 </h4>
                                 <h5>$19.99</h5>
                                 <p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -184,7 +240,7 @@
                             <a href="#"><img class="card-img-top" src="../img/productsghe-tap-ta-da-nang-xuki-0.jpg" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">Dụng cụ 3</a>
+                                    <a href="#">Dụng cụ tập lưng</a>
                                 </h4>
                                 <h5>$14.99</h5>
                                 <p class="card-text">Mô tả sản phẩm ngắn gọn ở đây.</p>
@@ -199,6 +255,133 @@
 		<p>© 2023 Bản quyền thuộc về Trang web bán dụng cụ thể thao</p>
 	</div>
 </footer>
-
+<div class="row">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>THÔNG TIN KHÁCH HÀNG</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-control">
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <label for="">Mã khách hàng</label>
+                            </div>
+                            <div class="col-6 col-sm-9">
+                                <input type="text" class="form-control" placeholder="Nhập mã khách hàng" id="txtMa">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <label for="">Họ tên</label>
+                            </div>
+                            <div class="col-6 col-sm-9">
+                                <input type="text" id="txtHT" class="form-control" placeholder="Nhập họ tên">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-12">
+                                <span id="tbTen">*</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-3">
+                                <label for="">Địa chỉ</label>
+                            </div>
+                            <div class="col-6 col-sm-9">
+                                <input type="text" class="form-control" placeholder="Nhập địa chỉ" id="txtDC">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-sm-12">
+                                <span id="tbDC">*</span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4 col-sm-3">
+                                <label for="">Đồ dùng</label>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="20000" /> Áo tạ
+                            </div>
+                            <div class="col-4 col-sm-2">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="20000" /> Bóng trọng lực
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-sm-3">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="50000" /> Ghế tập Gym
+                            </div>
+                            <div class="col-4 col-sm-2">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="20000" /> Khung Gôn
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-sm-3">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="70000" /> Tạ
+                            </div>
+                            <div class="col-4 col-sm-2">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="20000" /> Máy chạy bộ
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-sm-3">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="70000" /> Đồ nhảy xà
+                            </div>
+                            <div class="col-4 col-sm-2">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-4">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="20000" /> Vợt bóng bàn
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-sm-3">
+                                <label for=""></label>
+                            </div>
+                            <div class="col-6 col-sm-9">
+                                <input type="checkbox" name="chkDoDung" class="chkDoDung" value="70000" /> Máy tập lưng
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4 col-sm-3">
+                                <label for="">Tổng tiền</label>
+                            </div>
+                            <div class="col-6 col-sm-9">
+                                <input type="text" name="txtTong" id="txtTong" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6"><input type="button" value="Lưu" id="btnSave" class="btn btn-success btn-block"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-sm-6"><input type="reset" value="Đóng" class="btn btn-danger btn-block"></div>
+                </div>
 </body>
 </html>
