@@ -8,6 +8,21 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .mauDo {
+            font-size: 100%;
+            color: red;
+        }
+        
+        [class="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+        
+        li {
+            width: 160px;
+        }
+    </style>
     <script>
         $(document).ready(function() {
             var i = 2;
@@ -63,54 +78,53 @@
             $("#txtDC").blur(kiemtraDC);
         });
         $(document).ready(function() {
-
-function tinhTongTien() {
-    var tongTien = 0;
-    $(".txtGia").each(function() {
-        var gia = parseInt($(this).val());
-        if (!isNaN(gia)) {
-            tongTien += gia;
-        }
-    });
-    $("#txtTongTien").val(tongTien);
+        function tinhTongTien() {
+            var tongTien = 0;
+        $(".txtGia").each(function() {
+            var gia = parseInt($(this).val());
+            if (!isNaN(gia)) {
+                tongTien += gia;
+            }
+        });
+        $("#txtTongTien").val(tongTien);
 }
 
-tinhTongTien();
+    tinhTongTien();
 
-$("#btnSave").click(function() {
-    var maKhachHang = $("#txtMa").val();
-    var hoTen = $("#txtHT").val();
-    var diaChi = $("#txtDC").val();
-    if (maKhachHang === "" || hoTen === "" || diaChi === "") {
-        alert("Vui lòng nhập đầy đủ thông tin khách hàng!");
-        return;
-    }
-    if (!kiemtraMa() || !kiemTraTen() || !kiemtraDC()) {
-        alert("Thông tin khách hàng không hợp lệ!");
-        return;
-    }
+        $("#btnSave").click(function() {
+            var maKhachHang = $("#txtMa").val();
+            var hoTen = $("#txtHT").val();
+            var diaChi = $("#txtDC").val();
+            if (maKhachHang === "" || hoTen === "" || diaChi === "") {
+            alert("Vui lòng nhập đầy đủ thông tin khách hàng!");
+            return;
+        }
+            if (!kiemtraMa() || !kiemTraTen() || !kiemtraDC()) {
+                alert("Thông tin khách hàng không hợp lệ!");
+                return;
+        }
 
     // Lưu thông tin khách hàng
-    var khachHang = {
-        maKhachHang: maKhachHang,
-        hoTen: hoTen,
-        diaChi: diaChi,
-        tongTien: $("#txtTongTien").val()
+            var khachHang = {
+            maKhachHang: maKhachHang,
+            hoTen: hoTen,
+            diaChi: diaChi,
+            tongTien: $("#txtTongTien").val()
     };
-    localStorage.setItem("khachHang", JSON.stringify(khachHang));
+            localStorage.setItem("khachHang", JSON.stringify(khachHang));
 
-    alert("Lưu thông tin khách hàng thành công!");
+            alert("Lưu thông tin khách hàng thành công!");
+    });
+
+            $("#txtMa").blur(kiemtraMa);
+            $("#txtHT").blur(kiemTraTen);
+            $("#txtDC").blur(kiemtraDC);
+
+            $(".txtGia").blur(function() {
+                tinhTongTien();
+    });
+
 });
-
-$("#txtMa").blur(kiemtraMa);
-$("#txtHT").blur(kiemTraTen);
-$("#txtDC").blur(kiemtraDC);
-
-$(".txtGia").blur(function() {
-    tinhTongTien();
-});
-
-}   );
 
     </script>
 </head>
@@ -353,7 +367,7 @@ $(".txtGia").blur(function() {
                         <br>
                         <div class="row">
                             <div class="col-4 col-sm-3">
-                                <label for="">Đồ dùng</label>
+                                <label for="">Dụng cụ</label>
                             </div>
                             <div class="col-6 col-sm-3">
                                 <input type="checkbox" name="chkDoDung" class="chkDoDung" value="200000" /> Áo tạ
